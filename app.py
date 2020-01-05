@@ -17,10 +17,12 @@ class Language(Resource):
 
     @api.expect(collection_language)
     def post(self):
-        if api.payload in languages:
+        if any(row['language'] == api.payload['language'] for row in languages):
             return {'result': 'The resource already exists'}, 409
 
-        languages.append(api.payload)
+        payload = api.payload
+        payload['id'] = len(languages) + 1
+        languages.append(payload)
         return {'result': 'language added'}, 201
 
 
