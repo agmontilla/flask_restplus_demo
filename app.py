@@ -12,6 +12,8 @@ languages = []
 
 @api.route('/language')
 class Language(Resource):
+
+    @api.marshal_with(collection_language)
     def get(self):
         return languages
 
