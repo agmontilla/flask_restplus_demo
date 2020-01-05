@@ -13,7 +13,7 @@ languages = []
 @api.route('/language')
 class Language(Resource):
 
-    @api.marshal_with(collection_language)
+    @api.marshal_with(collection_language, envelope='results')
     def get(self):
         return languages
 
