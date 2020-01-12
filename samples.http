@@ -1,5 +1,5 @@
 ###
-POST http://127.0.0.1:5000/language
+POST http://127.0.0.1:5000/api/language
 Accept: application/json
 Content-Type: application/json
 
@@ -7,6 +7,6 @@ Content-Type: application/json
 
 ###
 
-GET http://127.0.0.1:5000/language
+GET http://127.0.0.1:5000/api/language
  
 ###

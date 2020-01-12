@@ -1,8 +1,11 @@
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, fields
 
 app = Flask(__name__)
-api = Api(app)
+blueprint = Blueprint('api', __name__, url_prefix='/api')
+api = Api(blueprint, doc='/documentation')
+
+app.register_blueprint(blueprint)
 
 collection_language = api.model(
     'Language', {'language': fields.String('The Language')})
