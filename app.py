@@ -2,8 +2,17 @@ from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, fields
 
 app = Flask(__name__)
+
+authorizations = {
+    'apikey': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'X-API-KEY'
+    }
+}
+
 blueprint = Blueprint('api', __name__, url_prefix='/api')
-api = Api(blueprint, doc='/documentation')
+api = Api(blueprint, doc='/documentation', authorizations=authorizations)
 
 app.register_blueprint(blueprint)
 
@@ -17,6 +26,7 @@ languages = []
 class Language(Resource):
 
     @api.marshal_with(collection_language, envelope='results')
+    @api.doc(security='apikey')
     def get(self):
         return languages
 
